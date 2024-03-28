@@ -1,26 +1,36 @@
-import React from 'react';
-import './App.css';
-import Home from './components/Home/Home';
-import Sidebar from './components/Sidebar/Sidebar';
-import Note from './components/Note/Note';
-import LabAction from './components/LabAction/LabAction';
-import Message from './components/Message/Message';
-import Lab from './components/Lab/Lab';
+import React,{useState} from 'react';
+import "./App.css";
+import data from "./mock-data.json";
 
+const App = ()=> {
+  const[contacts]= useState(data);
 
-const App = () => {
-  return(
-    <>
-    < LabAction />
-    <main className = "main">
-      < Lab />
-      < Sidebar />
-      < Home />
-      < Note />
-      < Message />
-    </main>
-    </>
-    );
-}
+  return <div className='app-container'>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First_Name</th>
+          <th>Last_Name</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        {contacts.map((contact)=>(
+         <tr>
+          <td>{contact.ID}</td>
+          <td>{contact.First_Name}</td>
+          <td>{contact.Last_Name}</td>
+          <td>{contact.Date}</td>
+          </tr>
+          ))}
+         
+      </tbody>
+    
+    </table>
+  </div>
+};
+
 
 export default App;
